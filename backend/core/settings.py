@@ -39,6 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'dispensa',
+    'contas_pagar',
+    'contas_receber',
+    'arrecadacoes',
+    'pessoas',
+    'servicos',
+    'relatorios',
+    'configuracoes',
 ]
 
 MIDDLEWARE = [

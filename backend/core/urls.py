@@ -20,6 +20,13 @@ from ninja import NinjaAPI
 
 api = NinjaAPI()
 api.add_router("/dispensa/", "dispensa.api.router")
+api.add_router("/contas-pagar/", "contas_pagar.api.router")
+api.add_router("/contas-receber/", "contas_receber.api.router")
+api.add_router("/arrecadacoes/", "arrecadacoes.api.router")
+api.add_router("/pessoas/", "pessoas.api.router")
+api.add_router("/servicos/", "servicos.api.router")
+api.add_router("/relatorios/", "relatorios.api.router")
+api.add_router("/configuracoes/", "configuracoes.api.router")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
