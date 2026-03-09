@@ -4,19 +4,19 @@ import React, { useState, useEffect } from 'react';
 import { ItemDispensa, ItemDispensaCreate } from '@/types/dispensa';
 import { getItens, updateItem, deleteItem, createItem } from '@/services/dispensa';
 import { DataTable } from '@/components/DataTable';
-import { Badge } from '@/components/Badge';
 import { Edit2, Trash2 } from 'lucide-react';
 import { DispensaForm } from '@/components/DispensaForm';
 import { Button } from '@/components/Button';
 import { Modal } from '@/components/Modal';
 import { ConfirmModal } from '@/components/ConfirmModal';
 
-export default function DispensaPage() {
+export default function ComprasPage() {
     const [itens, setItens] = useState<ItemDispensa[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [showForm, setShowForm] = useState(false);
     const [editingItem, setEditingItem] = useState<ItemDispensa | null>(null);
+    const [filter, setFilter] = useState<'MISSING' | 'ALL'>('MISSING');
     const [deletingItem, setDeletingItem] = useState<ItemDispensa | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -38,8 +38,14 @@ export default function DispensaPage() {
     }, []);
 
     const filteredItems = itens.filter(item => {
-        // Filter by Search text (case insensitive)
-        return item.nome.toLowerCase().includes(searchTerm.toLowerCase());
+        // Toggle Filter: MISSING (<= min) or ALL
+        const isMissingRow = parseFloat(item.quantidade_atual) <= parseFloat(item.quantidade_minima);
+        const matchesTab = filter === 'ALL' || isMissingRow;
+
+        // Search text (case insensitive)
+        const matchesSearch = item.nome.toLowerCase().includes(searchTerm.toLowerCase());
+
+        return matchesTab && matchesSearch;
     });
 
     const handleCreateOrUpdate = async (data: ItemDispensaCreate | any) => {
@@ -64,33 +70,6 @@ export default function DispensaPage() {
         setShowForm(true);
     };
 
-    const handleIncrement = async (item: ItemDispensa) => {
-        try {
-            const novaQuantidade = parseFloat(item.quantidade_atual) + 1;
-            const updatedItem = await updateItem(item.id, {
-                quantidade_atual: novaQuantidade.toString()
-            });
-            setItens(itens.map(i => i.id === item.id ? updatedItem : i));
-        } catch (err) {
-            console.error('Erro ao incrementar item:', err);
-        }
-    };
-
-    const handleDecrement = async (item: ItemDispensa) => {
-        const quantidadeAtual = parseFloat(item.quantidade_atual);
-        if (quantidadeAtual <= 0) return;
-
-        try {
-            const novaQuantidade = Math.max(0, quantidadeAtual - 1);
-            const updatedItem = await updateItem(item.id, {
-                quantidade_atual: novaQuantidade.toString()
-            });
-            setItens(itens.map(i => i.id === item.id ? updatedItem : i));
-        } catch (err) {
-            console.error('Erro ao decrementar item:', err);
-        }
-    };
-
     const handleDeleteRequest = (item: ItemDispensa) => {
         setDeletingItem(item);
     };
@@ -111,10 +90,32 @@ export default function DispensaPage() {
     return (
         <div className="min-h-screen bg-gray-50 py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center mb-8">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                     <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
-                        Minha Dispensa
+                        Lista de Compras
                     </h1>
+
+                    {/* Toggle Button */}
+                    <div className="flex items-center bg-gray-200 p-1 rounded-lg">
+                        <button
+                            onClick={() => setFilter('MISSING')}
+                            className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${filter === 'MISSING'
+                                    ? 'bg-white text-gray-900 shadow-sm'
+                                    : 'text-gray-500 hover:text-gray-700'
+                                }`}
+                        >
+                            Apenas Falta
+                        </button>
+                        <button
+                            onClick={() => setFilter('ALL')}
+                            className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${filter === 'ALL'
+                                    ? 'bg-white text-gray-900 shadow-sm'
+                                    : 'text-gray-500 hover:text-gray-700'
+                                }`}
+                        >
+                            Todos os Itens
+                        </button>
+                    </div>
                 </div>
 
                 <Modal
@@ -181,7 +182,7 @@ export default function DispensaPage() {
                         {filteredItems.length === 0 ? (
                             <tr>
                                 <td colSpan={6} className="px-6 py-12 text-center text-sm text-gray-500">
-                                    Nenhum item encontrado na dispensa.
+                                    Nenhum item na lista de compras.
                                 </td>
                             </tr>
                         ) : (
@@ -196,15 +197,15 @@ export default function DispensaPage() {
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="text-sm font-medium text-gray-900 flex items-center gap-2">
                                                 {item.nome}
-                                                {isEmFalta && <span className="w-2 h-2 rounded-full bg-red-500 inline-block"></span>}
-                                                {isEstoqueBaixo && <span className="w-2 h-2 rounded-full bg-yellow-500 inline-block"></span>}
+                                                {isEmFalta && <span className="w-2 h-2 rounded-full bg-red-500 inline-block" title="Em Falta"></span>}
+                                                {isEstoqueBaixo && <span className="w-2 h-2 rounded-full bg-yellow-500 inline-block" title="Estoque Baixo"></span>}
                                             </div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {item.categoria ? item.categoria.nome : '-'}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-center">
-                                            <span className={`text-sm font-semibold ${isEmFalta ? 'text-red-600' : isEstoqueBaixo ? 'text-yellow-600' : 'text-gray-900'}`}>
+                                            <span className={`text-sm font-bold ${isEmFalta ? 'text-red-600' : isEstoqueBaixo ? 'text-yellow-600' : 'text-gray-900'}`}>
                                                 {item.quantidade_atual}
                                             </span>
                                         </td>
@@ -242,4 +243,3 @@ export default function DispensaPage() {
         </div>
     );
 }
-
