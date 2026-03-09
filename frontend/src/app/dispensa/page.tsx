@@ -3,7 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { ItemDispensa, ItemDispensaCreate } from '@/types/dispensa';
 import { getItens, updateItem, deleteItem, createItem } from '@/services/dispensa';
-import { ItemTable } from '@/components/ItemTable';
+import { DataTable } from '@/components/DataTable';
+import { Badge } from '@/components/Badge';
+import { Edit2, Trash2 } from 'lucide-react';
 import { ItemForm } from '@/components/ItemForm';
 import { Button } from '@/components/Button';
 import { Modal } from '@/components/Modal';
@@ -17,6 +19,7 @@ export default function DispensaPage() {
     const [editingItem, setEditingItem] = useState<ItemDispensa | null>(null);
     const [filter, setFilter] = useState<'ALL' | 'COMPRAS'>('ALL');
     const [deletingItem, setDeletingItem] = useState<ItemDispensa | null>(null);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const fetchItens = async () => {
         try {
@@ -35,9 +38,15 @@ export default function DispensaPage() {
         fetchItens();
     }, []);
 
-    const filteredItems = filter === 'ALL'
-        ? itens
-        : itens.filter(i => parseFloat(i.quantidade_atual) <= parseFloat(i.quantidade_minima));
+    const filteredItems = itens.filter(item => {
+        // First filter by 'ALL' or 'COMPRAS'
+        const matchesTab = filter === 'ALL' || parseFloat(item.quantidade_atual) <= parseFloat(item.quantidade_minima);
+
+        // Then filter by Search text (case insensitive)
+        const matchesSearch = item.nome.toLowerCase().includes(searchTerm.toLowerCase());
+
+        return matchesTab && matchesSearch;
+    });
 
     const handleCreateOrUpdate = async (data: ItemDispensaCreate | any) => {
         try {
@@ -112,12 +121,6 @@ export default function DispensaPage() {
                     <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
                         Minha Dispensa
                     </h1>
-                    <Button onClick={() => {
-                        setEditingItem(null);
-                        setShowForm(!showForm);
-                    }}>
-                        {showForm ? 'Fechar Formulário' : '+ Novo Item'}
-                    </Button>
                 </div>
 
                 <div className="flex gap-4 mb-6 border-b border-gray-200">
@@ -185,16 +188,76 @@ export default function DispensaPage() {
 
                 {loading ? (
                     <div className="flex justify-center items-center h-64">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
                     </div>
                 ) : (
-                    <ItemTable
-                        itens={filteredItems}
-                        onIncrement={handleIncrement}
-                        onDecrement={handleDecrement}
-                        onDelete={handleDeleteRequest}
-                        onEdit={handleEdit}
-                    />
+                    <DataTable
+                        columns={['NOME', 'CATEGORIA', 'QTD ATUAL', 'QTD MÍNIMA', 'MEDIDA', 'AÇÕES']}
+                        onSearch={setSearchTerm}
+                        onAdd={() => {
+                            setEditingItem(null);
+                            setShowForm(true);
+                        }}
+                    >
+                        {filteredItems.length === 0 ? (
+                            <tr>
+                                <td colSpan={6} className="px-6 py-12 text-center text-sm text-gray-500">
+                                    Nenhum item encontrado na dispensa.
+                                </td>
+                            </tr>
+                        ) : (
+                            filteredItems.map((item) => {
+                                const qtdAtual = parseFloat(item.quantidade_atual);
+                                const qtdMinima = parseFloat(item.quantidade_minima);
+                                const isEmFalta = qtdAtual === 0;
+                                const isEstoqueBaixo = qtdAtual > 0 && qtdAtual <= qtdMinima;
+
+                                return (
+                                    <tr key={item.id} className="hover:bg-gray-50/50 transition-colors">
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <div className="text-sm font-medium text-gray-900 flex items-center gap-2">
+                                                {item.nome}
+                                                {isEmFalta && <span className="w-2 h-2 rounded-full bg-red-500 inline-block"></span>}
+                                                {isEstoqueBaixo && <span className="w-2 h-2 rounded-full bg-yellow-500 inline-block"></span>}
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {item.categoria ? item.categoria.nome : '-'}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-center">
+                                            <span className={`text-sm font-semibold ${isEmFalta ? 'text-red-600' : isEstoqueBaixo ? 'text-yellow-600' : 'text-gray-900'}`}>
+                                                {item.quantidade_atual}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 font-medium">
+                                            {item.quantidade_minima}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {item.unidade_medida}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <div className="flex items-center justify-end space-x-2">
+                                                <button
+                                                    onClick={() => handleEdit(item)}
+                                                    className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                                                    title="Editar"
+                                                >
+                                                    <Edit2 className="w-4 h-4" />
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDeleteRequest(item)}
+                                                    className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
+                                                    title="Excluir"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })
+                        )}
+                    </DataTable>
                 )}
             </div>
         </div>
