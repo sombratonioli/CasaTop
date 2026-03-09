@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Package, ShoppingCart } from 'lucide-react';
+import { Package, ShoppingCart, Users, Briefcase, TrendingDown, TrendingUp, Landmark, FileText, Settings } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
   return (
@@ -12,13 +12,13 @@ export const Sidebar: React.FC = () => {
 
       {/* Navigation Links */}
       <nav className="flex-1 overflow-y-auto py-4">
-        {/* Menu Section */}
-        <div className="px-6 mb-2">
+
+        {/* Dispensa Section */}
+        <div className="px-6 mb-2 mt-4 first:mt-0">
           <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-            Apps
+            Dispensa
           </h2>
         </div>
-
         <ul className="space-y-1 px-3">
           <li>
             <Link
@@ -38,26 +38,96 @@ export const Sidebar: React.FC = () => {
               Lista de Compras
             </Link>
           </li>
-          {/*
+        </ul>
+
+        {/* Cadastros Section */}
+        <div className="px-6 mb-2 mt-6">
+          <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+            Cadastros
+          </h2>
+        </div>
+        <ul className="space-y-1 px-3">
           <li>
-            <Link 
-              href="/contas" 
+            <Link
+              href="/pessoas"
               className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors"
             >
-              <Receipt className="w-5 h-5 mr-3 text-gray-400" />
+              <Users className="w-5 h-5 mr-3 text-gray-400" />
+              Pessoas
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/servicos"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            >
+              <Briefcase className="w-5 h-5 mr-3 text-gray-400" />
+              Serviços
+            </Link>
+          </li>
+        </ul>
+
+        {/* Financeiro Section */}
+        <div className="px-6 mb-2 mt-6">
+          <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+            Financeiro
+          </h2>
+        </div>
+        <ul className="space-y-1 px-3">
+          <li>
+            <Link
+              href="/contas-pagar"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            >
+              <TrendingDown className="w-5 h-5 mr-3 text-gray-400" />
               Contas a Pagar
             </Link>
           </li>
           <li>
-            <Link 
-              href="/projetos" 
+            <Link
+              href="/contas-receber"
               className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors"
             >
-              <FolderKanban className="w-5 h-5 mr-3 text-gray-400" />
-              Projetos
+              <TrendingUp className="w-5 h-5 mr-3 text-gray-400" />
+              Contas a Receber
             </Link>
           </li>
-          */}
+          <li>
+            <Link
+              href="/arrecadacoes"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            >
+              <Landmark className="w-5 h-5 mr-3 text-gray-400" />
+              Arrecadações
+            </Link>
+          </li>
+        </ul>
+
+        {/* Sistema Section */}
+        <div className="px-6 mb-2 mt-6">
+          <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+            Sistema
+          </h2>
+        </div>
+        <ul className="space-y-1 px-3">
+          <li>
+            <Link
+              href="/relatorios"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            >
+              <FileText className="w-5 h-5 mr-3 text-gray-400" />
+              Relatórios
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/configuracoes"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            >
+              <Settings className="w-5 h-5 mr-3 text-gray-400" />
+              Configurações
+            </Link>
+          </li>
         </ul>
       </nav>
     </aside>
