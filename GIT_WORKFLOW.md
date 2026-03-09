@@ -1,4 +1,4 @@
-# Fluxo de Trabalho Git - CasaTop
+# Fluxo de Trabalho Git - Domus
 INSTRUÇÃO PARA A IA: Sempre que o utilizador solicitar um "envio", "merge" ou "passar código para staging/produção", deves obrigatoriamente ler este ficheiro e executar os comandos exatos dos roteiros abaixo.
 
 Roteiro 1: Envio de Desenvolvimento (Feature) para Staging

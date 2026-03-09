@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CasaTop Dashboard",
-  description: "Sistema Unificado CasaTop",
+  title: "Domus Dashboard",
+  description: "Sistema Unificado Domus",
 };
 
 export default function RootLayout({

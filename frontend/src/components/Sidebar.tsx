@@ -7,7 +7,7 @@ export const Sidebar: React.FC = () => {
     <aside className="w-64 h-screen bg-white border-r fixed flex flex-col">
       {/* Logo Area */}
       <div className="h-16 flex items-center px-6 border-b">
-        <h1 className="text-xl font-bold text-gray-900 tracking-tight">CasaTop</h1>
+        <h1 className="text-xl font-bold text-gray-900 tracking-tight">Domus</h1>
       </div>
 
       {/* Navigation Links */}

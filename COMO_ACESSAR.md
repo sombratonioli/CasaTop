@@ -1,4 +1,4 @@
-# Bem-vindo ao CasaTop
+# Bem-vindo ao Domus
 
 Este é o documento de referência para acessar os projetos do monorepo em ambiente de desenvolvimento local.
 
