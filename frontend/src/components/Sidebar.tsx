@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Package, Receipt, FolderKanban, ShoppingCart } from 'lucide-react';
+import { Package, ShoppingCart } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
   return (

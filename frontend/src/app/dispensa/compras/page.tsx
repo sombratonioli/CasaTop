@@ -1,12 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ItemDispensa, ItemDispensaCreate } from '@/types/dispensa';
+import { ItemDispensa, ItemDispensaCreate, ItemDispensaUpdate } from '@/types/dispensa';
 import { getItens, updateItem, deleteItem, createItem } from '@/services/dispensa';
 import { DataTable } from '@/components/DataTable';
 import { Edit2, Trash2 } from 'lucide-react';
 import { DispensaForm } from '@/components/DispensaForm';
-import { Button } from '@/components/Button';
 import { Modal } from '@/components/Modal';
 import { ConfirmModal } from '@/components/ConfirmModal';
 
@@ -26,8 +25,8 @@ export default function ComprasPage() {
             const data = await getItens();
             setItens(data);
             setError(null);
-        } catch (err: any) {
-            setError(err.message || 'Erro ao carregar itens da dispensa');
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Erro ao carregar itens da dispensa');
         } finally {
             setLoading(false);
         }
@@ -48,7 +47,7 @@ export default function ComprasPage() {
         return matchesTab && matchesSearch;
     });
 
-    const handleCreateOrUpdate = async (data: ItemDispensaCreate | any) => {
+    const handleCreateOrUpdate = async (data: ItemDispensaCreate | ItemDispensaUpdate) => {
         try {
             if (editingItem) {
                 const updatedItem = await updateItem(editingItem.id, data);
@@ -59,7 +58,7 @@ export default function ComprasPage() {
             }
             setShowForm(false);
             setEditingItem(null);
-        } catch (err: any) {
+        } catch (err) {
             console.error('Erro ao salvar item:', err);
             alert('Erro ao salvar item.');
         }
@@ -100,8 +99,8 @@ export default function ComprasPage() {
                         <button
                             onClick={() => setFilter('MISSING')}
                             className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${filter === 'MISSING'
-                                    ? 'bg-white text-gray-900 shadow-sm'
-                                    : 'text-gray-500 hover:text-gray-700'
+                                ? 'bg-white text-gray-900 shadow-sm'
+                                : 'text-gray-500 hover:text-gray-700'
                                 }`}
                         >
                             Apenas Falta
@@ -109,8 +108,8 @@ export default function ComprasPage() {
                         <button
                             onClick={() => setFilter('ALL')}
                             className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${filter === 'ALL'
-                                    ? 'bg-white text-gray-900 shadow-sm'
-                                    : 'text-gray-500 hover:text-gray-700'
+                                ? 'bg-white text-gray-900 shadow-sm'
+                                : 'text-gray-500 hover:text-gray-700'
                                 }`}
                         >
                             Todos os Itens

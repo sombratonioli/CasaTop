@@ -84,7 +84,7 @@ export const DispensaForm: React.FC<DispensaFormProps> = ({ initialData, onSubmi
                 ...formData,
                 categoria_id: formData.categoria_id === '' ? null : formData.categoria_id
             };
-            await onSubmit(submitData as any);
+            await onSubmit(submitData as unknown as ItemDispensaCreate | ItemDispensaUpdate);
 
             if (!isEditMode) {
                 setFormData({

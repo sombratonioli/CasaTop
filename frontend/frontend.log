@@ -178,3 +178,290 @@ Import traces:
 https://nextjs.org/docs/messages/module-not-found
 
 
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+ GET /dispensa 500 in 393ms (compile: 308ms, render: 85ms)
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+✓ Compiled in 426ms
+ GET /dispensa 500 in 424ms (compile: 254ms, render: 170ms)
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+ GET /dispensa 500 in 330ms (compile: 157ms, render: 174ms)
+ GET /dispensa 500 in 349ms (compile: 241ms, render: 109ms)
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+ GET /dispensa 500 in 221ms (compile: 80ms, render: 141ms)
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+ GET /dispensa 500 in 768ms (compile: 527ms, render: 241ms)
+ GET /dispensa 500 in 514ms (compile: 397ms, render: 117ms)
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+ GET /dispensa 500 in 641ms (compile: 381ms, render: 261ms)
+ GET /dispensa 500 in 621ms (compile: 485ms, render: 136ms)
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+ GET /dispensa 500 in 257ms (compile: 117ms, render: 140ms)
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+ GET /dispensa 500 in 434ms (compile: 245ms, render: 189ms)
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+ GET /dispensa 500 in 584ms (compile: 439ms, render: 145ms)
+ GET /dispensa 500 in 627ms (compile: 430ms, render: 197ms)
+ GET /dispensa 500 in 449ms (compile: 338ms, render: 111ms)
+⨯ ./src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: /home/ari/CasaTop/frontend/src/app/globals.css:1:1: Cannot apply unknown utility class `bg-gray-50`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
+    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:146:32)]
+    [at Object.Once (/home/ari/CasaTop/frontend/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:95:5)]
+    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:293:11)]
+    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
+    [at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+

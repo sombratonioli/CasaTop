@@ -1,13 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ItemDispensa, ItemDispensaCreate } from '@/types/dispensa';
+import { ItemDispensa, ItemDispensaCreate, ItemDispensaUpdate } from '@/types/dispensa';
 import { getItens, updateItem, deleteItem, createItem } from '@/services/dispensa';
 import { DataTable } from '@/components/DataTable';
-import { Badge } from '@/components/Badge';
 import { Edit2, Trash2 } from 'lucide-react';
 import { DispensaForm } from '@/components/DispensaForm';
-import { Button } from '@/components/Button';
 import { Modal } from '@/components/Modal';
 import { ConfirmModal } from '@/components/ConfirmModal';
 
@@ -26,8 +24,8 @@ export default function DispensaPage() {
             const data = await getItens();
             setItens(data);
             setError(null);
-        } catch (err: any) {
-            setError(err.message || 'Erro ao carregar itens da dispensa');
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Erro ao carregar itens da dispensa');
         } finally {
             setLoading(false);
         }
@@ -42,7 +40,7 @@ export default function DispensaPage() {
         return item.nome.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
-    const handleCreateOrUpdate = async (data: ItemDispensaCreate | any) => {
+    const handleCreateOrUpdate = async (data: ItemDispensaCreate | ItemDispensaUpdate) => {
         try {
             if (editingItem) {
                 const updatedItem = await updateItem(editingItem.id, data);
@@ -53,7 +51,7 @@ export default function DispensaPage() {
             }
             setShowForm(false);
             setEditingItem(null);
-        } catch (err: any) {
+        } catch (err) {
             console.error('Erro ao salvar item:', err);
             alert('Erro ao salvar item.');
         }
@@ -62,33 +60,6 @@ export default function DispensaPage() {
     const handleEdit = (item: ItemDispensa) => {
         setEditingItem(item);
         setShowForm(true);
-    };
-
-    const handleIncrement = async (item: ItemDispensa) => {
-        try {
-            const novaQuantidade = parseFloat(item.quantidade_atual) + 1;
-            const updatedItem = await updateItem(item.id, {
-                quantidade_atual: novaQuantidade.toString()
-            });
-            setItens(itens.map(i => i.id === item.id ? updatedItem : i));
-        } catch (err) {
-            console.error('Erro ao incrementar item:', err);
-        }
-    };
-
-    const handleDecrement = async (item: ItemDispensa) => {
-        const quantidadeAtual = parseFloat(item.quantidade_atual);
-        if (quantidadeAtual <= 0) return;
-
-        try {
-            const novaQuantidade = Math.max(0, quantidadeAtual - 1);
-            const updatedItem = await updateItem(item.id, {
-                quantidade_atual: novaQuantidade.toString()
-            });
-            setItens(itens.map(i => i.id === item.id ? updatedItem : i));
-        } catch (err) {
-            console.error('Erro ao decrementar item:', err);
-        }
     };
 
     const handleDeleteRequest = (item: ItemDispensa) => {
