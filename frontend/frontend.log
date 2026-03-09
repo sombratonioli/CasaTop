@@ -78,3 +78,103 @@ Import trace:
 
  GET /dispensa 500 in 61ms (compile: 28ms, render: 33ms)
 ✓ Compiled in 673ms
+⨯ ./src/app/dispensa/page.tsx:9:1
+Module not found: Can't resolve '@/components/ItemForm'
+[0m [90m  7 |[39m [36mimport[39m { [33mBadge[39m } [36mfrom[39m [32m'@/components/Badge'[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mEdit2[39m[33m,[39m [33mTrash2[39m } [36mfrom[39m [32m'lucide-react'[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mItemForm[39m } [36mfrom[39m [32m'@/components/ItemForm'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m'@/components/Button'[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { [33mModal[39m } [36mfrom[39m [32m'@/components/Modal'[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mConfirmModal[39m } [36mfrom[39m [32m'@/components/ConfirmModal'[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/ItemForm' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/dispensa/page.tsx [Client Component Browser]
+    ./src/app/dispensa/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/dispensa/page.tsx [Client Component SSR]
+    ./src/app/dispensa/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/dispensa/page.tsx:9:1
+Module not found: Can't resolve '@/components/ItemForm'
+[0m [90m  7 |[39m [36mimport[39m { [33mBadge[39m } [36mfrom[39m [32m'@/components/Badge'[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mEdit2[39m[33m,[39m [33mTrash2[39m } [36mfrom[39m [32m'lucide-react'[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mItemForm[39m } [36mfrom[39m [32m'@/components/ItemForm'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m'@/components/Button'[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { [33mModal[39m } [36mfrom[39m [32m'@/components/Modal'[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mConfirmModal[39m } [36mfrom[39m [32m'@/components/ConfirmModal'[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/ItemForm' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/dispensa/page.tsx [Client Component Browser]
+    ./src/app/dispensa/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/dispensa/page.tsx [Client Component SSR]
+    ./src/app/dispensa/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/dispensa/page.tsx:9:1
+Module not found: Can't resolve '@/components/ItemForm'
+[0m [90m  7 |[39m [36mimport[39m { [33mBadge[39m } [36mfrom[39m [32m'@/components/Badge'[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mEdit2[39m[33m,[39m [33mTrash2[39m } [36mfrom[39m [32m'lucide-react'[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mItemForm[39m } [36mfrom[39m [32m'@/components/ItemForm'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m'@/components/Button'[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { [33mModal[39m } [36mfrom[39m [32m'@/components/Modal'[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mConfirmModal[39m } [36mfrom[39m [32m'@/components/ConfirmModal'[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/ItemForm' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/dispensa/page.tsx [Client Component Browser]
+    ./src/app/dispensa/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/dispensa/page.tsx [Client Component SSR]
+    ./src/app/dispensa/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/dispensa/page.tsx:9:1
+Module not found: Can't resolve '@/components/ItemForm'
+[0m [90m  7 |[39m [36mimport[39m { [33mBadge[39m } [36mfrom[39m [32m'@/components/Badge'[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mEdit2[39m[33m,[39m [33mTrash2[39m } [36mfrom[39m [32m'lucide-react'[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mItemForm[39m } [36mfrom[39m [32m'@/components/ItemForm'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m'@/components/Button'[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { [33mModal[39m } [36mfrom[39m [32m'@/components/Modal'[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mConfirmModal[39m } [36mfrom[39m [32m'@/components/ConfirmModal'[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/ItemForm' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/dispensa/page.tsx [Client Component Browser]
+    ./src/app/dispensa/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/dispensa/page.tsx [Client Component SSR]
+    ./src/app/dispensa/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+

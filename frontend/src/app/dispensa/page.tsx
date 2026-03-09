@@ -6,7 +6,7 @@ import { getItens, updateItem, deleteItem, createItem } from '@/services/dispens
 import { DataTable } from '@/components/DataTable';
 import { Badge } from '@/components/Badge';
 import { Edit2, Trash2 } from 'lucide-react';
-import { ItemForm } from '@/components/ItemForm';
+import { DispensaForm } from '@/components/DispensaForm';
 import { Button } from '@/components/Button';
 import { Modal } from '@/components/Modal';
 import { ConfirmModal } from '@/components/ConfirmModal';
@@ -146,7 +146,7 @@ export default function DispensaPage() {
                     }}
                     title={editingItem ? "Editar Item" : "Novo Item"}
                 >
-                    <ItemForm
+                    <DispensaForm
                         onSubmit={handleCreateOrUpdate}
                         onCancel={() => {
                             setShowForm(false);

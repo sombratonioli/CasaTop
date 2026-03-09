@@ -3,7 +3,7 @@ import { ItemDispensaCreate, ItemDispensaUpdate, Categoria } from '../types/disp
 import { getCategorias, createCategoria } from '../services/dispensa';
 import { Button } from './Button';
 
-interface ItemFormProps {
+interface DispensaFormProps {
     initialData?: {
         id: number;
         nome: string;
@@ -16,7 +16,7 @@ interface ItemFormProps {
     onCancel?: () => void;
 }
 
-export const ItemForm: React.FC<ItemFormProps> = ({ initialData, onSubmit, onCancel }) => {
+export const DispensaForm: React.FC<DispensaFormProps> = ({ initialData, onSubmit, onCancel }) => {
     const isEditMode = !!initialData;
     const [formData, setFormData] = useState({
         nome: initialData?.nome || '',
