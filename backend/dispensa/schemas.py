@@ -23,6 +23,7 @@ class ItemDispensaCreateSchema(Schema):
     categoria_id: Optional[int] = None
     quantidade_atual: Decimal
     quantidade_minima: Decimal
+    quantidade_ideal: Optional[Decimal] = Decimal('0.00')
     unidade_medida: str
 
 class ItemDispensaUpdateSchema(Schema):
@@ -30,4 +31,5 @@ class ItemDispensaUpdateSchema(Schema):
     categoria_id: Optional[int] = None
     quantidade_atual: Optional[Decimal] = None
     quantidade_minima: Optional[Decimal] = None
+    quantidade_ideal: Optional[Decimal] = None
     unidade_medida: Optional[str] = None

@@ -62,6 +62,33 @@ export default function DispensaPage() {
         setShowForm(true);
     };
 
+    const handleIncrement = async (item: ItemDispensa) => {
+        try {
+            const novaQuantidade = parseFloat(item.quantidade_atual) + 1;
+            const updatedItem = await updateItem(item.id, {
+                quantidade_atual: novaQuantidade.toString()
+            });
+            setItens(itens.map(i => i.id === item.id ? updatedItem : i));
+        } catch (err) {
+            console.error('Erro ao incrementar item:', err);
+        }
+    };
+
+    const handleDecrement = async (item: ItemDispensa) => {
+        const quantidadeAtual = parseFloat(item.quantidade_atual);
+        if (quantidadeAtual <= 0) return;
+
+        try {
+            const novaQuantidade = Math.max(0, quantidadeAtual - 1);
+            const updatedItem = await updateItem(item.id, {
+                quantidade_atual: novaQuantidade.toString()
+            });
+            setItens(itens.map(i => i.id === item.id ? updatedItem : i));
+        } catch (err) {
+            console.error('Erro ao decrementar item:', err);
+        }
+    };
+
     const handleDeleteRequest = (item: ItemDispensa) => {
         setDeletingItem(item);
     };
@@ -142,7 +169,7 @@ export default function DispensaPage() {
                     </div>
                 ) : (
                     <DataTable
-                        columns={['NOME', 'CATEGORIA', 'QTD ATUAL', 'QTD MÍNIMA', 'MEDIDA', 'AÇÕES']}
+                        columns={['NOME', 'CATEGORIA', 'QTD ATUAL', 'QTD IDEAL', 'QTD MÍNIMA', 'MEDIDA', 'AÇÕES']}
                         onSearch={setSearchTerm}
                         onAdd={() => {
                             setEditingItem(null);
@@ -151,7 +178,7 @@ export default function DispensaPage() {
                     >
                         {filteredItems.length === 0 ? (
                             <tr>
-                                <td colSpan={6} className="px-6 py-12 text-center text-sm text-gray-500">
+                                <td colSpan={7} className="px-6 py-12 text-center text-sm text-gray-500">
                                     Nenhum item encontrado na dispensa.
                                 </td>
                             </tr>
@@ -167,8 +194,8 @@ export default function DispensaPage() {
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="text-sm font-medium text-gray-900 flex items-center gap-2">
                                                 {item.nome}
-                                                {isEmFalta && <span className="w-2 h-2 rounded-full bg-red-500 inline-block"></span>}
-                                                {isEstoqueBaixo && <span className="w-2 h-2 rounded-full bg-yellow-500 inline-block"></span>}
+                                                {isEmFalta && <span className="w-2 h-2 rounded-full bg-red-500 inline-block" title="Em Falta"></span>}
+                                                {isEstoqueBaixo && <span className="w-2 h-2 rounded-full bg-yellow-500 inline-block" title="Estoque Baixo"></span>}
                                             </div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -180,13 +207,32 @@ export default function DispensaPage() {
                                             </span>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 font-medium">
+                                            {item.quantidade_ideal || '-'}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 font-medium">
                                             {item.quantidade_minima}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {item.unidade_medida}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <div className="flex items-center justify-end space-x-2">
+                                            <div className="flex items-center justify-end space-x-1">
+                                                <button
+                                                    onClick={() => handleDecrement(item)}
+                                                    className="w-6 h-6 flex items-center justify-center text-gray-500 hover:bg-gray-200 rounded-full transition-colors disabled:opacity-50"
+                                                    disabled={qtdAtual <= 0}
+                                                    title="Diminuir"
+                                                >
+                                                    -
+                                                </button>
+                                                <button
+                                                    onClick={() => handleIncrement(item)}
+                                                    className="w-6 h-6 flex items-center justify-center text-gray-500 hover:bg-gray-200 rounded-full transition-colors"
+                                                    title="Aumentar"
+                                                >
+                                                    +
+                                                </button>
+                                                <div className="w-px h-4 bg-gray-300 mx-1"></div>
                                                 <button
                                                     onClick={() => handleEdit(item)}
                                                     className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"

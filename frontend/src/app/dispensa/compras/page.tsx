@@ -171,7 +171,7 @@ export default function ComprasPage() {
                     </div>
                 ) : (
                     <DataTable
-                        columns={['NOME', 'CATEGORIA', 'QTD ATUAL', 'QTD MÍNIMA', 'MEDIDA', 'AÇÕES']}
+                        columns={['NOME', 'CATEGORIA', 'QTD ATUAL', 'QTD MÍNIMA', 'QTD COMPRAR', 'MEDIDA', 'AÇÕES']}
                         onSearch={setSearchTerm}
                         onAdd={() => {
                             setEditingItem(null);
@@ -180,7 +180,7 @@ export default function ComprasPage() {
                     >
                         {filteredItems.length === 0 ? (
                             <tr>
-                                <td colSpan={6} className="px-6 py-12 text-center text-sm text-gray-500">
+                                <td colSpan={7} className="px-6 py-12 text-center text-sm text-gray-500">
                                     Nenhum item na lista de compras.
                                 </td>
                             </tr>
@@ -188,8 +188,10 @@ export default function ComprasPage() {
                             filteredItems.map((item) => {
                                 const qtdAtual = parseFloat(item.quantidade_atual);
                                 const qtdMinima = parseFloat(item.quantidade_minima);
+                                const qtdIdeal = parseFloat(item.quantidade_ideal || '0');
                                 const isEmFalta = qtdAtual === 0;
                                 const isEstoqueBaixo = qtdAtual > 0 && qtdAtual <= qtdMinima;
+                                const qtdComprar = Math.max(0, qtdIdeal - qtdAtual);
 
                                 return (
                                     <tr key={item.id} className="hover:bg-gray-50/50 transition-colors">
@@ -210,6 +212,11 @@ export default function ComprasPage() {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 font-medium">
                                             {item.quantidade_minima}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-center">
+                                            <span className="text-sm font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-md">
+                                                {qtdComprar}
+                                            </span>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {item.unidade_medida}

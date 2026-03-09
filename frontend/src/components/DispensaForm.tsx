@@ -10,6 +10,7 @@ interface DispensaFormProps {
         categoria_id?: number | null;
         quantidade_atual: string;
         quantidade_minima: string;
+        quantidade_ideal?: string;
         unidade_medida: string;
     };
     onSubmit: (data: ItemDispensaCreate | ItemDispensaUpdate) => Promise<void>;
@@ -23,6 +24,7 @@ export const DispensaForm: React.FC<DispensaFormProps> = ({ initialData, onSubmi
         categoria_id: initialData?.categoria_id || '',
         quantidade_atual: initialData?.quantidade_atual || '',
         quantidade_minima: initialData?.quantidade_minima || '',
+        quantidade_ideal: initialData?.quantidade_ideal || '',
         unidade_medida: initialData?.unidade_medida || 'UNIDADE',
     });
 
@@ -92,6 +94,7 @@ export const DispensaForm: React.FC<DispensaFormProps> = ({ initialData, onSubmi
                     categoria_id: '',
                     quantidade_atual: '',
                     quantidade_minima: '',
+                    quantidade_ideal: '',
                     unidade_medida: 'UNIDADE',
                 });
             }
@@ -157,6 +160,25 @@ export const DispensaForm: React.FC<DispensaFormProps> = ({ initialData, onSubmi
                             value={formData.quantidade_minima}
                             onChange={handleChange}
                             className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md p-2 border"
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label htmlFor="quantidade_ideal" className="block text-sm font-medium text-gray-700">
+                        Quantidade Ideal (Opcional)
+                    </label>
+                    <div className="mt-1">
+                        <input
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            name="quantidade_ideal"
+                            id="quantidade_ideal"
+                            value={formData.quantidade_ideal}
+                            onChange={handleChange}
+                            className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md p-2 border"
+                            placeholder="Ex: 5"
                         />
                     </div>
                 </div>

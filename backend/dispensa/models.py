@@ -20,6 +20,7 @@ class ItemDispensa(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
     quantidade_atual = models.DecimalField(max_digits=10, decimal_places=2)
     quantidade_minima = models.DecimalField(max_digits=10, decimal_places=2)
+    quantidade_ideal = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, blank=True, null=True)
     unidade_medida = models.CharField(max_length=20, choices=UNIDADE_CHOICES)
 
     def __str__(self):
