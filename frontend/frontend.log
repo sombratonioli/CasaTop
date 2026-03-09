@@ -1,0 +1,31 @@
+nohup: ignorando entrada
+
+> frontend@0.1.0 dev
+> NODE_OPTIONS='--max-old-space-size=1024' next dev --turbopack
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.11.170:3000
+- Environments: .env.local
+
+✓ Starting...
+✓ Ready in 1271ms
+ GET /dispensa 200 in 1829ms (compile: 1464ms, render: 365ms)
+✓ Compiled in 443ms
+✓ Compiled in 372ms
+✓ Compiled in 45ms
+✓ Compiled in 95ms
+✓ Compiled in 34ms
+✓ Compiled in 75ms
+✓ Compiled in 38ms
+ GET /dispensa 200 in 434ms (compile: 315ms, render: 120ms)
+ GET /dispensa 200 in 302ms (compile: 13ms, render: 289ms)
+ GET /dispensa 200 in 133ms (compile: 16ms, render: 116ms)
+ GET /dispensa 200 in 176ms (compile: 16ms, render: 160ms)
+ GET /dispensa 200 in 131ms (compile: 13ms, render: 118ms)
+ GET /dispensa 200 in 97ms (compile: 7ms, render: 90ms)
+✓ Compiled in 112ms
+✓ Compiled in 72ms
+✓ Compiled in 110ms
+✓ Compiled in 65ms
+ GET /dispensa 200 in 456ms (compile: 248ms, render: 207ms)

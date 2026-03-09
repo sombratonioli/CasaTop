@@ -1,21 +1,48 @@
-import React, { useState } from 'react';
-import { ItemDispensaCreate } from '../types/dispensa';
+import React, { useState, useEffect } from 'react';
+import { ItemDispensaCreate, ItemDispensaUpdate, Categoria } from '../types/dispensa';
+import { getCategorias, createCategoria } from '../services/dispensa';
 import { Button } from './Button';
 
 interface ItemFormProps {
-    onSubmit: (data: ItemDispensaCreate) => Promise<void>;
+    initialData?: {
+        id: number;
+        nome: string;
+        categoria_id?: number | null;
+        quantidade_atual: string;
+        quantidade_minima: string;
+        unidade_medida: string;
+    };
+    onSubmit: (data: ItemDispensaCreate | ItemDispensaUpdate) => Promise<void>;
     onCancel?: () => void;
 }
 
-export const ItemForm: React.FC<ItemFormProps> = ({ onSubmit, onCancel }) => {
-    const [formData, setFormData] = useState<ItemDispensaCreate>({
-        nome: '',
-        quantidade_atual: '',
-        quantidade_minima: '',
-        unidade_medida: 'UNIDADE',
+export const ItemForm: React.FC<ItemFormProps> = ({ initialData, onSubmit, onCancel }) => {
+    const isEditMode = !!initialData;
+    const [formData, setFormData] = useState({
+        nome: initialData?.nome || '',
+        categoria_id: initialData?.categoria_id || '',
+        quantidade_atual: initialData?.quantidade_atual || '',
+        quantidade_minima: initialData?.quantidade_minima || '',
+        unidade_medida: initialData?.unidade_medida || 'UNIDADE',
     });
 
+    const [categorias, setCategorias] = useState<Categoria[]>([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isCreatingCategory, setIsCreatingCategory] = useState(false);
+    const [newCategoryName, setNewCategoryName] = useState('');
+
+    useEffect(() => {
+        loadCategorias();
+    }, []);
+
+    const loadCategorias = async () => {
+        try {
+            const data = await getCategorias();
+            setCategorias(data);
+        } catch (error) {
+            console.error('Erro ao carregar categorias', error);
+        }
+    };
 
     const unidadesMedida = [
         { value: 'KG', label: 'Quilogramas (KG)' },
@@ -26,23 +53,48 @@ export const ItemForm: React.FC<ItemFormProps> = ({ onSubmit, onCancel }) => {
         { value: 'GRAMAS', label: 'Gramas (g)' },
     ];
 
+    const handleCreateCategory = async () => {
+        if (!newCategoryName.trim()) return;
+        try {
+            setIsCreatingCategory(true);
+            const newCat = await createCategoria({ nome: newCategoryName });
+            setCategorias([...categorias, newCat]);
+            setFormData(prev => ({ ...prev, categoria_id: newCat.id }));
+            setNewCategoryName('');
+        } catch (error) {
+            console.error('Erro ao criar categoria', error);
+        } finally {
+            setIsCreatingCategory(false);
+        }
+    };
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        setFormData(prev => ({
+            ...prev,
+            [name]: name === 'categoria_id' ? (value ? Number(value) : null) : value
+        }));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             setIsSubmitting(true);
-            await onSubmit(formData);
-            // Limpar formulário após sucesso
-            setFormData({
-                nome: '',
-                quantidade_atual: '',
-                quantidade_minima: '',
-                unidade_medida: 'UNIDADE',
-            });
+            const submitData = {
+                ...formData,
+                categoria_id: formData.categoria_id === '' ? null : formData.categoria_id
+            };
+            await onSubmit(submitData as any);
+
+            if (!isEditMode) {
+                setFormData({
+                    nome: '',
+                    categoria_id: '',
+                    quantidade_atual: '',
+                    quantidade_minima: '',
+                    unidade_medida: 'UNIDADE',
+                });
+            }
         } catch (error) {
             console.error('Erro ao submeter formulário:', error);
         } finally {
@@ -51,9 +103,7 @@ export const ItemForm: React.FC<ItemFormProps> = ({ onSubmit, onCancel }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">Adicionar Novo Item</h3>
-
+        <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
                 <div className="sm:col-span-2">
                     <label htmlFor="nome" className="block text-sm font-medium text-gray-700">
@@ -111,7 +161,47 @@ export const ItemForm: React.FC<ItemFormProps> = ({ onSubmit, onCancel }) => {
                     </div>
                 </div>
 
-                <div className="sm:col-span-2">
+                <div className="sm:col-span-1">
+                    <label htmlFor="categoria_id" className="block text-sm font-medium text-gray-700">
+                        Categoria
+                    </label>
+                    <div className="mt-1 flex gap-2">
+                        <select
+                            id="categoria_id"
+                            name="categoria_id"
+                            value={formData.categoria_id || ''}
+                            onChange={handleChange}
+                            className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md p-2 border bg-white"
+                        >
+                            <option value="">Sem Categoria</option>
+                            {categorias.map(cat => (
+                                <option key={cat.id} value={cat.id}>
+                                    {cat.nome}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="mt-2 flex gap-2">
+                        <input
+                            type="text"
+                            placeholder="Nova Categoria..."
+                            value={newCategoryName}
+                            onChange={(e) => setNewCategoryName(e.target.value)}
+                            className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md p-2 border text-xs"
+                        />
+                        <Button
+                            type="button"
+                            variant="secondary"
+                            size="sm"
+                            onClick={handleCreateCategory}
+                            disabled={isCreatingCategory || !newCategoryName.trim()}
+                        >
+                            +
+                        </Button>
+                    </div>
+                </div>
+
+                <div className="sm:col-span-1">
                     <label htmlFor="unidade_medida" className="block text-sm font-medium text-gray-700">
                         Unidade de Medida
                     </label>
@@ -150,7 +240,7 @@ export const ItemForm: React.FC<ItemFormProps> = ({ onSubmit, onCancel }) => {
                     variant="primary"
                     disabled={isSubmitting}
                 >
-                    {isSubmitting ? 'Salvando...' : 'Adicionar Item'}
+                    {isSubmitting ? 'Salvando...' : (isEditMode ? 'Salvar Alterações' : 'Adicionar Item')}
                 </Button>
             </div>
         </form>

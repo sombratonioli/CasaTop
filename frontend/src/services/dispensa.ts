@@ -1,5 +1,5 @@
 import { fetchApi } from './api';
-import { ItemDispensa, ItemDispensaCreate, ItemDispensaUpdate } from '../types/dispensa';
+import { ItemDispensa, ItemDispensaCreate, ItemDispensaUpdate, Categoria } from '../types/dispensa';
 
 export const getItens = async (): Promise<ItemDispensa[]> => {
     return fetchApi('dispensa/');
@@ -7,6 +7,17 @@ export const getItens = async (): Promise<ItemDispensa[]> => {
 
 export const getCompras = async (): Promise<ItemDispensa[]> => {
     return fetchApi('dispensa/compras');
+};
+
+export const getCategorias = async (): Promise<Categoria[]> => {
+    return fetchApi('dispensa/categorias');
+};
+
+export const createCategoria = async (data: { nome: string }): Promise<Categoria> => {
+    return fetchApi('dispensa/categorias', {
+        method: 'POST',
+        body: JSON.stringify(data),
+    });
 };
 
 export const createItem = async (data: ItemDispensaCreate): Promise<ItemDispensa> => {

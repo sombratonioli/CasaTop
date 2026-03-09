@@ -8,6 +8,9 @@ class CategoriaSchema(ModelSchema):
         model = Categoria
         fields = ["id", "nome"]
 
+class CategoriaCreateSchema(Schema):
+    nome: str
+
 class ItemDispensaSchema(ModelSchema):
     categoria: Optional[CategoriaSchema] = None
 
