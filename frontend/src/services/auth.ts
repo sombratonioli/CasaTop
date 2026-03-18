@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
+import { BASE_URL } from './api';
 
 export const login = async (email: string, password: string) => {
     const response = await fetch(`${BASE_URL}/token`, {
