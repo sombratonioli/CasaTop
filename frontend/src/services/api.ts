@@ -3,8 +3,10 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 export const fetchApi = async (endpoint: string, options?: RequestInit) => {
     const url = `${BASE_URL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
 
+    const token = typeof window !== 'undefined' ? localStorage.getItem('access') : null;
     const headers = {
         'Content-Type': 'application/json',
+        ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
         ...options?.headers,
     };
 
