@@ -11,20 +11,20 @@ router = Router(auth=JWTAuth())
 
 @router.get("/categorias", response=List[CategoriaSchema])
 def list_categorias(request):
-    return Categoria.objects.all()
+    return Categoria.objects.filter(usuario=request.user)
 
 @router.post("/categorias", response=CategoriaSchema)
 def create_categoria(request, payload: CategoriaCreateSchema):
-    categoria = Categoria.objects.create(**payload.dict())
+    categoria = Categoria.objects.create(**payload.dict(), usuario=request.user)
     return categoria
 
 @router.get("/", response=List[ItemDispensaSchema])
 def list_items(request):
-    return ItemDispensa.objects.all()
+    return ItemDispensa.objects.filter(usuario=request.user)
 
 @router.get("/compras", response=List[ItemDispensaSchema])
 def list_compras(request):
-    return ItemDispensa.objects.filter(quantidade_atual__lte=F('quantidade_minima'))
+    return ItemDispensa.objects.filter(quantidade_atual__lte=F('quantidade_minima'), usuario=request.user)
 
 @router.post("/", response=ItemDispensaSchema)
 def create_item(request, payload: ItemDispensaCreateSchema):
@@ -34,12 +34,13 @@ def create_item(request, payload: ItemDispensaCreateSchema):
     if context.get('quantidade_minima') < 0:
         context['quantidade_minima'] = 0
         
+    context['usuario'] = request.user
     item = ItemDispensa.objects.create(**context)
     return item
 
 @router.patch("/{item_id}", response=ItemDispensaSchema)
 def update_item(request, item_id: int, payload: ItemDispensaUpdateSchema):
-    item = get_object_or_404(ItemDispensa, id=item_id)
+    item = get_object_or_404(ItemDispensa, id=item_id, usuario=request.user)
     
     update_data = payload.dict(exclude_unset=True)
     if update_data.get('quantidade_atual') is not None and update_data['quantidade_atual'] < 0:
@@ -54,6 +55,6 @@ def update_item(request, item_id: int, payload: ItemDispensaUpdateSchema):
 
 @router.delete("/{item_id}")
 def delete_item(request, item_id: int):
-    item = get_object_or_404(ItemDispensa, id=item_id)
+    item = get_object_or_404(ItemDispensa, id=item_id, usuario=request.user)
     item.delete()
     return {"success": True}
