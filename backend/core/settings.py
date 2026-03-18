@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'servicos',
     'relatorios',
     'configuracoes',
+    'ninja_extra',
     'ninja_jwt',
     'usuarios',
 ]
