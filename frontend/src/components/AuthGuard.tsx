@@ -8,7 +8,7 @@ import { Header } from "@/components/Header";
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [authorized, setAuthorized] = useState(false);
+  const [isChecking, setIsChecking] = useState(true);
 
   const isPublicRoute = pathname === '/login' || pathname === '/registro';
 
@@ -17,12 +17,12 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
 
     if (!isPublicRoute && !token) {
       router.push('/login');
-    } else {
-      setAuthorized(true);
     }
+    
+    setIsChecking(false);
   }, [pathname, router, isPublicRoute]);
 
-  if (!authorized) {
+  if (isChecking) {
     return null;
   }
 

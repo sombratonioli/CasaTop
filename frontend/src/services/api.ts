@@ -6,7 +6,7 @@ export const fetchApi = async (endpoint: string, options?: RequestInit) => {
     const token = typeof window !== 'undefined' ? localStorage.getItem('access') : null;
     const headers = {
         'Content-Type': 'application/json',
-        ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+        'Authorization': token ? 'Bearer ' + token : '',
         ...options?.headers,
     };
 
