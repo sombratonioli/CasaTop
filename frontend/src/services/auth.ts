@@ -1,7 +1,7 @@
 import { BASE_URL } from './api';
 
 export const login = async (email: string, password: string) => {
-    const response = await fetch(`${BASE_URL}/token`, {
+    const response = await fetch(`${BASE_URL}/token/pair`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
