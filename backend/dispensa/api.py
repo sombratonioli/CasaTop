@@ -2,11 +2,12 @@ from typing import List
 from django.shortcuts import get_object_or_404
 from django.db.models import F
 from ninja import Router
+from ninja_jwt.authentication import JWTAuth
 
 from .models import ItemDispensa, Categoria
 from .schemas import ItemDispensaSchema, ItemDispensaCreateSchema, ItemDispensaUpdateSchema, CategoriaSchema, CategoriaCreateSchema
 
-router = Router()
+router = Router(auth=JWTAuth())
 
 @router.get("/categorias", response=List[CategoriaSchema])
 def list_categorias(request):
