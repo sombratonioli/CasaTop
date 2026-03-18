@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'servicos',
     'relatorios',
     'configuracoes',
+    'ninja_jwt',
+    'usuarios',
 ]
 
 MIDDLEWARE = [
