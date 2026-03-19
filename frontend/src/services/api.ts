@@ -17,40 +17,37 @@ export const fetchApi = async (endpoint: string, options?: RequestInit) => {
 
     if (response.status === 401 && typeof window !== 'undefined') {
         const refreshToken = localStorage.getItem('refresh');
-        
         if (refreshToken) {
             try {
-                const refreshResponse = await fetch(`${BASE_URL}/token/refresh/`, {
+                const refreshRes = await fetch(`${BASE_URL}/token/refresh`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ refresh: refreshToken }),
+                    body: JSON.stringify({ refresh: refreshToken })
                 });
 
-                if (refreshResponse.ok) {
-                    const data = await refreshResponse.json();
+                if (refreshRes.ok) {
+                    const data = await refreshRes.json();
                     localStorage.setItem('access', data.access);
+
+                    // Refaz a requisição original com o novo token
+                    const newHeaders = new Headers(options?.headers as any);
+                    newHeaders.set('Authorization', `Bearer ${data.access}`);
+                    const newResponse = await fetch(url, { ...options, headers: newHeaders });
                     
-                    const newHeaders = { ...headers, 'Authorization': `Bearer ${data.access}` };
-                    
-                    response = await fetch(url, {
-                        ...options,
-                        headers: newHeaders,
-                    });
-                } else {
-                    localStorage.removeItem('access');
-                    localStorage.removeItem('refresh');
-                    window.location.href = '/login';
+                    if (newResponse.status === 204 || newResponse.headers.get('content-length') === '0') {
+                        return null;
+                    }
+                    return newResponse.json();
                 }
             } catch (error) {
-                localStorage.removeItem('access');
-                localStorage.removeItem('refresh');
-                window.location.href = '/login';
+                console.error("Erro ao renovar token", error);
             }
-        } else {
-            localStorage.removeItem('access');
-            localStorage.removeItem('refresh');
-            window.location.href = '/login';
         }
+        // Se chegou aqui, o refresh falhou ou não existe. Aí sim, limpa e desloga.
+        localStorage.removeItem('access');
+        localStorage.removeItem('refresh');
+        window.location.href = '/login';
+        return null;
     }
 
     if (!response.ok) {
