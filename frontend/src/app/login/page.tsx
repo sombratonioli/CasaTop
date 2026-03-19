@@ -19,7 +19,7 @@ export default function LoginPage() {
 
     try {
       await login(email, password);
-      router.push('/dispensa');
+      router.push('/resumo');
     } catch (err: any) {
       setError(err.message || 'Erro ao realizar login.');
     } finally {
