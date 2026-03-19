@@ -17,6 +17,7 @@ export const login = async (email: string, password: string) => {
     if (typeof window !== 'undefined') {
         localStorage.setItem('access', data.access);
         localStorage.setItem('refresh', data.refresh);
+        localStorage.setItem('user_email', email);
     }
     return true;
 };
@@ -42,6 +43,7 @@ export const logout = () => {
     if (typeof window !== 'undefined') {
         localStorage.removeItem('access');
         localStorage.removeItem('refresh');
+        localStorage.removeItem('user_email');
         window.location.href = '/login';
     }
 };

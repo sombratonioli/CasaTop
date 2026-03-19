@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bell, User } from 'lucide-react';
 import { logout } from '@/services/auth';
 
@@ -9,6 +9,11 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ title = "Domus Dashboard" }) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [userEmail, setUserEmail] = useState('');
+
+    useEffect(() => {
+        setUserEmail(localStorage.getItem('user_email') || 'Usuário');
+    }, []);
 
     return (
         <header className="h-16 bg-indigo-900 text-white flex items-center justify-between px-6 fixed top-0 left-64 right-0 z-10 shadow-sm">
@@ -43,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({ title = "Domus Dashboard" }) => 
                     {isDropdownOpen && (
                         <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-lg shadow-lg overflow-hidden text-sm">
                             <div className="px-4 py-3 text-gray-500 cursor-default">
-                                Usuário Logado
+                                {userEmail}
                             </div>
                             <hr className="border-gray-100" />
                             <button

@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'dispensa',
     'contas_pagar',
     'contas_receber',
-    'arrecadacoes',
     'pessoas',
     'servicos',
     'relatorios',
