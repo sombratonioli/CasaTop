@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'contas_receber',
     'pessoas',
     'servicos',
+    'compras',
     'relatorios',
     'configuracoes',
     'ninja_extra',
