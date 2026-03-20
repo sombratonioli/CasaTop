@@ -4,9 +4,9 @@ import { Package, ShoppingCart, Users, Briefcase, TrendingDown, TrendingUp, File
 
 export const Sidebar: React.FC = () => {
   return (
-    <aside className="w-64 h-screen bg-white border-r fixed flex flex-col">
+    <aside className="w-64 bg-white border-r border-gray-200 flex flex-col shadow-sm">
       {/* Logo Area */}
-      <div className="h-16 flex items-center px-6 border-b">
+      <div className="h-16 flex items-center px-6 border-b border-gray-200">
         <Link href="/resumo">
           <h1 className="text-xl font-bold text-gray-900 tracking-tight hover:text-indigo-600 transition-colors cursor-pointer">Domus</h1>
         </Link>

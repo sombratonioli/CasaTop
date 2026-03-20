@@ -16,7 +16,7 @@ export const Header: React.FC<HeaderProps> = ({ title = "Domus Dashboard" }) => 
     }, []);
 
     return (
-        <header className="h-16 bg-indigo-900 text-white flex items-center justify-between px-6 fixed top-0 left-64 right-0 z-10 shadow-sm">
+        <header className="h-16 bg-purple-800 text-white flex items-center justify-between px-6 shadow-md z-10">
             {/* Left Space for balancing flex-between if we want true center */}
             <div className="flex-1"></div>
 

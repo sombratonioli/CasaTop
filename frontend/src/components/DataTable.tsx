@@ -46,7 +46,7 @@ export const DataTable: React.FC<DataTableProps> = ({
             </div>
 
             {/* Table Area */}
-            <div className="overflow-x-auto bg-white rounded-lg border border-gray-200 shadow-sm h-full">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-full overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
                         <tr>
