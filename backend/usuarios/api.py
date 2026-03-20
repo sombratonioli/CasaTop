@@ -1,7 +1,9 @@
 from ninja import Router
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-from .schemas import RegistroIn, MensagemOut
+from ninja_jwt.authentication import JWTAuth
+from .schemas import RegistroIn, MensagemOut, PerfilOut
+from .models import Perfil
 
 router = Router()
 
@@ -17,4 +19,10 @@ def registro(request, payload: RegistroIn):
         password=make_password(payload.password),
         is_active=False
     )
+    Perfil.objects.create(usuario=user, nome_casa=payload.nome_casa)
     return 200, MensagemOut(mensagem="Usuário criado. Aguardando aprovação do administrador.")
+
+@router.get("/me", auth=JWTAuth(), response=PerfilOut)
+def get_me(request):
+    perfil, _ = Perfil.objects.get_or_create(usuario=request.user)
+    return perfil

@@ -7,13 +7,17 @@ interface HeaderProps {
     title?: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ title = "Domus Dashboard" }) => {
+export const Header: React.FC<HeaderProps> = ({ title }) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [userEmail, setUserEmail] = useState('');
+    const [nomeCasa, setNomeCasa] = useState('Minha Casa');
 
     useEffect(() => {
         setUserEmail(localStorage.getItem('user_email') || 'Usuário');
+        setNomeCasa(localStorage.getItem('nome_casa') || 'Minha Casa');
     }, []);
+
+    const displayTitle = title || nomeCasa;
 
     return (
         <header className="h-16 bg-purple-800 text-white flex items-center justify-between px-6 shadow-md z-10">
@@ -22,7 +26,7 @@ export const Header: React.FC<HeaderProps> = ({ title = "Domus Dashboard" }) => 
 
             {/* Center Title */}
             <div className="flex-1 flex justify-center">
-                <h2 className="text-lg font-medium tracking-wide">{title}</h2>
+                <h2 className="text-lg font-medium tracking-wide">{displayTitle}</h2>
             </div>
 
             {/* Right Icons */}

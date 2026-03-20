@@ -9,6 +9,7 @@ export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [nomeCasa, setNomeCasa] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -25,7 +26,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      await register(firstName, email, password);
+      await register(firstName, email, password, nomeCasa);
       setSuccess(true);
     } catch (err: any) {
       setError(err.message || 'Erro ao realizar cadastro.');
@@ -65,6 +66,22 @@ export default function RegisterPage() {
               </div>
             )}
             <div className="space-y-4 rounded-md shadow-sm">
+              <div>
+                <label htmlFor="nomeCasa" className="block text-sm font-medium leading-6 text-gray-900">Nome da Casa</label>
+                <div className="mt-2">
+                  <input
+                    id="nomeCasa"
+                    name="nomeCasa"
+                    type="text"
+                    maxLength={30}
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-3"
+                    placeholder="Ex: Minha Casa"
+                    value={nomeCasa}
+                    onChange={(e) => setNomeCasa(e.target.value)}
+                  />
+                </div>
+              </div>
               <div>
                 <label htmlFor="firstName" className="block text-sm font-medium leading-6 text-gray-900">Nome</label>
                 <div className="mt-2">
