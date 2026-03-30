@@ -1,17 +1,12 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class Pessoa(models.Model):
-    TIPO_CHOICES = [
-        ('Morador', 'Morador'),
-        ('Funcionario', 'Funcionário'),
-        ('Fornecedor', 'Fornecedor'),
-    ]
-
-    nome = models.CharField(max_length=255)
-    cpf_cnpj = models.CharField(max_length=20)
-    email = models.EmailField()
-    telefone = models.CharField(max_length=20)
-    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=14, blank=True)
 
     def __str__(self):
         return self.nome
