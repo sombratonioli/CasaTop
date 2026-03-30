@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchApi } from '@/services/api';
 import { Trash2 } from 'lucide-react';
-import AuthGuard from '@/components/AuthGuard';
 
 interface Pessoa {
   id: number;
@@ -65,10 +64,9 @@ export default function PessoasPage() {
   };
 
   return (
-    <AuthGuard>
-      <div className="p-8 bg-gray-50 min-h-[calc(100vh-64px)]">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-2xl font-semibold text-gray-800 mb-6">Membros da Família</h1>
+    <div className="p-8 bg-gray-50 min-h-[calc(100vh-64px)]">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-2xl font-semibold text-gray-800 mb-6">Membros da Família</h1>
           
           <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
             {/* Header & Formulário */}
@@ -150,6 +148,5 @@ export default function PessoasPage() {
           </div>
         </div>
       </div>
-    </AuthGuard>
   );
 }
